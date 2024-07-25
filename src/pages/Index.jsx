@@ -83,7 +83,7 @@ const Index = () => {
       </Tabs>
 
       <div className="text-center">
-        <Button size="lg" className="mt-8">
+        <Button size="lg" className="mt-8 bg-red-600 hover:bg-red-700 text-white">
           Learn More About Communist China
         </Button>
       </div>
