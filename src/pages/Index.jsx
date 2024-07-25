@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Flag, Star, Users, Building2 } from "lucide-react";
+import { Flag, Star, Users, Building2, Quote } from "lucide-react";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -14,6 +14,13 @@ const Index = () => {
     { icon: <Building2 className="h-6 w-6" />, title: "State-Owned Enterprises", description: "Key industries controlled by the government" },
   ];
 
+  const quotes = [
+    { author: "Mao Zedong", text: "Political power grows out of the barrel of a gun." },
+    { author: "Deng Xiaoping", text: "It doesn't matter whether a cat is black or white, as long as it catches mice." },
+    { author: "Xi Jinping", text: "The people's wish for a good life is our goal." },
+    { author: "Zhou Enlai", text: "All diplomacy is a continuation of war by other means." },
+  ];
+
   return (
     <div className="container mx-auto px-4 py-8">
       <header className="text-center mb-12">
@@ -22,10 +29,11 @@ const Index = () => {
       </header>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-12">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="history">History</TabsTrigger>
           <TabsTrigger value="features">Key Features</TabsTrigger>
+          <TabsTrigger value="quotes">Quotes</TabsTrigger>
         </TabsList>
         <TabsContent value="overview" className="mt-6">
           <Card>
@@ -79,6 +87,27 @@ const Index = () => {
               </Card>
             ))}
           </div>
+        </TabsContent>
+        <TabsContent value="quotes" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Notable Quotes</CardTitle>
+              <CardDescription>Influential statements from Chinese communist leaders</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {quotes.map((quote, index) => (
+                  <Card key={index} className="bg-muted">
+                    <CardContent className="pt-6">
+                      <Quote className="h-8 w-8 text-muted-foreground mb-2" />
+                      <p className="text-lg font-semibold mb-2">"{quote.text}"</p>
+                      <p className="text-sm text-muted-foreground">- {quote.author}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
 
